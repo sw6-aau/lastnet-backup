@@ -138,13 +138,9 @@ optim = Optim.Optim(
 
 #test_noisy = add_noise(Data.test[0])
 
-# Load the best saved model.
-# Have changed the train- and validation to 0, so it testes on all the data
-with open(args.save, 'rb+') as f:
-    checkpoint = torch.load(f, map_location='cpu')
-    
-model.load_state_dict(checkpoint['model_state_dict'], strict=False)
-optim.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+# Load the best saved model
+with open(args.save, 'wb+') as f:
+    torch.save(model, f)
 test_acc, test_rae, test_corr, prediction_tensor  = evaluate(Data, Data.test[0], Data.test[1], model, evaluateL2, evaluateL1, args.batch_size)
 print("test rse {:5.4f} | test rae {:5.4f} | test corr {:5.4f}".format(test_acc, test_rae, test_corr))
 
