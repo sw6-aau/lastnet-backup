@@ -1,0 +1,1 @@
+python predict.py --data data/exchange_rate.txt --save save/standardLSTNet329.pt --hidCNN 50 --hidRNN 50 --L1Loss False --output_fun None --epochs 1000
